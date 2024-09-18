@@ -2,7 +2,6 @@ package br.ufc.quixada.usoroomdatabase;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 import java.util.List;
 import br.ufc.quixada.usoroomdatabase.database.AppDatabase;
-import br.ufc.quixada.usoroomdatabase.models.Agendamento;
-import br.ufc.quixada.usoroomdatabase.models.Pessoa;
+import br.ufc.quixada.usoroomdatabase.models.Schedule;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppDatabase db;
-    private AgendamentoAdapter agendamentoAdapter;
+    private ScheduleAdapter scheduleAdapter;
     private RecyclerView recyclerView;
-    private Button criarNovoButton;
+    private Button redirectButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,27 +25,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.recyclerView);
-        criarNovoButton = findViewById(R.id.criarNovoButton);
+        redirectButton = findViewById(R.id.redirectButton);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                        AppDatabase.class, "agendamento-database")
-                .fallbackToDestructiveMigration() // Adiciona essa linha para recriar o banco
+        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "schedules-database")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build();
 
 
-        List<Agendamento> agendamentos = db.agendamentoDao().getAllAgendamentos();
-        Log.d("agendamentos", "agendamenxtos");
-        for (int i = 0; i < agendamentos.size(); i++) {
-            Log.d("Task", "Array element at index " + i + ": " + agendamentos.get(i));
-        }
-        agendamentoAdapter = new AgendamentoAdapter(agendamentos);
-        recyclerView.setAdapter(agendamentoAdapter);;
+        List<Schedule> schedules = db.scheduleDao().getAllSchedules();
+        scheduleAdapter = new ScheduleAdapter(schedules, this);
+        recyclerView.setAdapter(scheduleAdapter);;
 
-        // Configura o botão "Criar Novo" para abrir a AddItemActivity
-        criarNovoButton.setOnClickListener(new View.OnClickListener() {
+
+        redirectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddItemActivity.class);
@@ -60,9 +53,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Atualiza a lista de agendamentos quando a Activity for retomada
-        List<Agendamento> agendamentosAtualizadas = db.agendamentoDao().getAllAgendamentos();
-        agendamentoAdapter = new AgendamentoAdapter(agendamentosAtualizadas);
-        recyclerView.setAdapter(agendamentoAdapter);
+        List<Schedule> allSchedules = db.scheduleDao().getAllSchedules();
+        scheduleAdapter = new ScheduleAdapter(allSchedules, this);
+        recyclerView.setAdapter(scheduleAdapter);
     }
 }

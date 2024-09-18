@@ -14,19 +14,19 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/clienteTextView"
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cliente"
+            android:text="Nome do cliente"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/dataTextView"
+            android:id="@+id/dateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data e Horário"
+            android:text="Horário do Agendamento"
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 

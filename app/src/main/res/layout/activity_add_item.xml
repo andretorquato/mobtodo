@@ -6,16 +6,16 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/clienteEditText"
+        android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Cliente" />
+        android:hint="Nome do cliente" />
 
     <EditText
-        android:id="@+id/dataHoraEditText"
+        android:id="@+id/dateEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Data e Horário"
+        android:hint="Horário do agendamento"
         android:focusable="false"
         android:clickable="true" />
 
