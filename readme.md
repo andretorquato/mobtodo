@@ -53,4 +53,7 @@ onde conseguira visualizar os seus clientes agendados no dia atual e os próximo
 
 ## Conclusão 
 
-Para a parte de autenticação foi realizado integração com o firebase para realizar o gerenciamento de login e cadastro de novos usuários, para a parte de persistência dos dados, cadastro, exclusão e modificação de dados foi utilizado o ROOM Database, para listagem dos dados foram utilizados RecycleView, CardView, Services e FrameLayout.
+Para a parte de autenticação foi realizado integração com o `Firebase` para realizar o gerenciamento de login e cadastro de novos usuários, para a parte de persistência dos dados, cadastro, exclusão e modificação de dados foi utilizado o `ROOM Database`, para listagem dos dados foram utilizados `RecycleView`, `CardView`, `Services` e `FrameLayout`.
+
+
+obs: para rodar o projeto é necessario criar um novo projeto no firebase e adicionar ao projeto as credencias `google-service.json`
